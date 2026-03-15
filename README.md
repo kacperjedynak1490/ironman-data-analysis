@@ -6,7 +6,7 @@ Projekt analizuje wyniki Mistrzostw Świata Ironman 2019 w Kailua-Kona na Hawaja
 https://ironman-data-analysis.streamlit.app
 
 <p align="center">
-  <img src="dashboard.png" width="800">
+  <img src="dashboard.jpg" width="800">
 </p>
 
 ## 🛠 Technologie
