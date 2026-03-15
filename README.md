@@ -25,3 +25,4 @@ Aby uniknąć konfliktów z innymi bibliotekami na Twoim komputerze, zalecam uż
 
 ## Lub...
 ## 🚀 Link do aplikacji
+https://ironman-data-analysis.streamlit.app
