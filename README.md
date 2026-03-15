@@ -22,3 +22,6 @@ Aby uniknąć konfliktów z innymi bibliotekami na Twoim komputerze, zalecam uż
 2. Zainstaluj wymagania: `pip install -r requirements.txt`
 3. Uruchom skrypt: `python analiza.py`
 4. Wyniki zostaną wygenerowane automatycznie: wykresy zapiszą się w nowym folderze `Wykresy/`, a oczyszczone dane w pliku `cleaned_ironman_results.csv`.
+
+## Lub...
+## 🚀 Link do aplikacji
