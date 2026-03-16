@@ -1,4 +1,4 @@
-# 🏊‍♂️🚴‍♂️🏃‍♂️ Ironman World Championship 2019 - Data Analysis
+# 🏊‍♂️🚴‍♂️🏃‍♂️ Ironman World Championship 2019 - Data Analysis & Machine Learning
 
 Projekt analizuje wyniki Mistrzostw Świata Ironman 2019 w Kailua-Kona na Hawajach. Celem było zidentyfikowanie kluczowych czynników wpływających na sukces w triathlonie oraz analiza demograficzna uczestników.
 
@@ -11,9 +11,14 @@ https://ironman-data-analysis.streamlit.app
 
 ## 🛠 Technologie
 * **Python 3.x**
+* **Scikit-learn**: Uczenie maszynowe (Regresja Liniowa) i predykcja wyników.
 * **Pandas**: Czyszczenie i transformacja danych (ETL).
 * **Plotly & Streamlit**: Budowa interaktywnego dashboardu i wizualizacji webowych.
 * **Seaborn & Matplotlib**: Wizualizacja statystyczna.
+
+## 🤖 Prosty model predykcyjny (Machine Learning)
+Aplikacja została wzbogacona o interaktywny kalkulator czasu końcowego. 
+Wykorzystuje on model **Regresji Liniowej** wytrenowany na historycznych danych z 2019 roku. Użytkownik może wprowadzić planowane czasy dla poszczególnych dyscyplin (Pływanie, Rower, Bieg), a model estymuje całkowity czas ukończenia wyścigu. System wykorzystuje technikę imputacji danych – jeśli użytkownik pominie jedną z dyscyplin, algorytm automatycznie podstawia średni czas ze zbioru danych, zachowując wysoką dokładność predykcji.
 
 ## 📈 Kluczowe wnioski (Insights)
 1. **Dominacja Biegu i Roweru**: Czas maratonu (Run) oraz roweru (Bike) wykazują niemal identyczną, najwyższą korelację z wynikiem końcowym (r = 0.94). To na lądzie decydują się losy wyścigu, co potwierdza tezę, iż triathlonu nie wygrywa się w wodzie, ale można go tam przegrać (ze względu na mniejszą korelację pływania z wynikiem końcowym).

@@ -3,7 +3,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+import pickle
 st.set_page_config(layout="wide")
+
+data = pd.read_csv("cleaned_ironman_results.csv")
+AVG_SWIM = data['Swim'].mean()
+AVG_BIKE = data['Bike'].mean()
+AVG_RUN = data['Run'].mean()
 
 def format_time(seconds):
     hours = int(seconds // 3600)
@@ -11,9 +17,8 @@ def format_time(seconds):
     return f"{hours}h {minutes}min"
 
 st.title("Analiza wyników Ironman World Championship 2019", text_alignment="center")
-data = pd.read_csv("cleaned_ironman_results.csv")
 columns_to_show = ['Name', 'Country', 'Swim', 'Bike', 'Run', 'Overall', 'Overall Rank']
-tab1, tab2, tab3 = st.tabs(["Tabela wyników", "Wykresy", "Statystyki"])
+tab1, tab2, tab3, tab4 = st.tabs(["Tabela wyników", "Wykresy", "Statystyki", "Predykcja czasu"])
 
 with tab1:
     #st.dataframe(data.head()) #pierwsze 5 wierszy na stronie
@@ -146,3 +151,33 @@ with tab2:
 with tab3:
     st.header("Statystyki opisowe", text_alignment="center")
     st.write(df.describe())
+
+with tab4:
+    st.header("Model predykcyjny", text_alignment="center")
+    model = pickle.load(open('ironman_model.pkl', 'rb'))
+    st.subheader("Wprowadź czasu dla poszczególnych dyscyplin w sekundach i dowiedz się, jaki będziesz mieć czas!", text_alignment="center")
+    use_swim = st.checkbox("Uwzględnij czas pływania", value=True)
+
+    if use_swim:
+        swim_time = st.number_input("Czas plywania (sekundy)", min_value = 0, value = int(AVG_SWIM))
+    else:
+        swim_time = AVG_SWIM
+    
+    use_bike = st.checkbox("Uwzględnij czas roweru", value=True)
+    if use_bike:
+        bike_time = st.number_input("Czas roweru (sekundy)", min_value = 0, value = int(AVG_BIKE))
+    else:
+        bike_time = AVG_BIKE
+
+    use_run = st.checkbox("Uwzględnij czas biegu", value=True)
+    if use_run:
+        run_time = st.number_input("Czas biegu (sekundy)", min_value = 0, value = int(AVG_RUN))
+    else:
+        run_time = AVG_RUN
+
+    if not (use_swim or use_bike or use_run):
+        st.warning("Musisz wybrać przynajmniej jedną dyscyplinę!")
+        
+    if st.button("Oblicz przewidywany czas całkowity"):
+        predicted = model.predict([[swim_time, bike_time, run_time]])
+        st.success(f"Twój przewidywany czas to: {format_time(predicted[0])}")
